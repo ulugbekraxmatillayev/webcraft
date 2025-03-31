@@ -1,6 +1,6 @@
 import Hero from '@/components/home/hero'
+import Services from '@/components/home/services'
 import ParticleBackground from '@/components/particles'
-import { ColorModeProvider } from '@/components/ui/color-mode'
 import React, { JSX } from 'react'
 
 const Index = (): JSX.Element => {
@@ -8,7 +8,10 @@ const Index = (): JSX.Element => {
     <div>
       {/* hero comp */}
       <Hero  />      
-      {/* <ParticleBackground /> */}
+
+      {/* Services */}
+      <Services />
+      <ParticleBackground />
     </div>
   )
 }
