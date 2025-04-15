@@ -26,24 +26,25 @@
 	background: #000;
 }
 
-.bottomSlice {
+.navLink .bottomSlice {
 	position: absolute;
-	width: 80%;
-	height: 2px;
 	bottom: 0;
-	left: -100%;
-	border-radius: 20px;
-	background: #2f80ed;
-	transition: 0.5s all;
+	left: 0;
+	height: 2px;
+	width: 100%;
+	background-color: #2F80ED;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.3s ease;
 }
 
 .navLink:hover .bottomSlice {
-	left: 0;
+	transform: scaleX(1);
 }
 
-.navLink:active,
-.navLink:focus .bottomSlice {
-	left: 0;
+/* active page uchun chiziq */
+.navLink.activeLink .bottomSlice {
+	transform: scaleX(1);
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -143,8 +144,128 @@ input[type=number]::-webkit-outer-spin-button {
 
 .card_title {
 	display: -webkit-box;
-	-webkit-line-clamp: 3; /* 3 qatorgacha ko‘rsatadi */
+	-webkit-line-clamp: 3;
+	/* 3 qatorgacha ko‘rsatadi */
 	-webkit-box-orient: vertical;
 	overflow: hidden;
-  
+
+}
+
+.more_items {
+	font-size: 18px;
+}
+
+.more_items .text-1 {
+	margin-bottom: 30px;
+}
+
+.more_items .heading-2 {
+	font-size: 21px;
+}
+
+.more_items .text-1 i {
+	font-weight: bold;
+}
+
+.more_items .text-2 i {
+	font-weight: bold;
+}
+
+.leftItem,
+.cardBtn,
+.rightItem {
+	transition: all .2s ease-in-out !important;
+}
+
+.leftItem {
+	left: -25%;
+	display: none;
+}
+
+.cardBtn:hover .leftItem {
+	left: 45%;
+	display: block;
+
+}
+
+.rightItem {
+	right: 15%;
+}
+
+.cardBtn:hover .rightItem {
+	right: -55%;
+}
+
+.benefitImage {
+	filter: grayscale(100%);
+	transition: all .5s;
+}
+
+.benefCard:hover .benefitImage {
+	filter: grayscale(0%);
+}
+
+.benefCard {
+	transition: all .3s;
+	cursor: pointer;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.benefCard:hover {
+	padding: 20px;
+	box-shadow: inset 0px 0px 20px 0px #BDBDC0;
+	border-radius: 20px;
+	border: 1px solid #EEF1F6;
+}
+
+.bImageBox {
+	transition: all .3s;
+
+}
+
+.benefCard:hover .bImageBox {
+	padding: 5px;
+	box-shadow: inset 0px 0px 10px 0px #BDBDC0;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -75%;
+		width: 10px;
+    }
+	50%{
+		width: 15px;
+	}
+	75%{
+		width: 20px;
+	}
+    100% {
+        left: 125%;
+    }
+}
+.seoImage{
+	box-shadow: 0px 0px 15px 1px #BDBDC0;
 }

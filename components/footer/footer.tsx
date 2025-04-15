@@ -1,5 +1,5 @@
-import { Box } from '@chakra-ui/react'
-import React, { JSX } from 'react'
+import { Box, Button, Text } from '@chakra-ui/react'
+import React, { JSX, ReactNode } from 'react'
 import logo from '../../assets/icons/globe.png'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,19 +10,26 @@ import { FaTelegram } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import CallDialog from '../dialog/callDialog'
 interface ContactDataType {
   id: number,
   icon: JSX.Element,
   title: string
+  url: string
 }
 
+interface dataType {
+  id: number,
+  title: ReactNode | string,
+  link: string
+}
 interface data1Type {
   id: number,
   title: string,
   link: string
 }
 function Footer(): JSX.Element {
-  const data1: data1Type[] = [
+  const data1: dataType[] = [
     {
       id: 1,
       title: 'Qadriyatlarimiz',
@@ -40,8 +47,8 @@ function Footer(): JSX.Element {
     },
     {
       id: 4,
-      title: 'Aloqa',
-      link: '/aloqa'
+      title: <CallDialog children={<Text>Aloqa</Text>}/>,
+      link: '#'
     },
     {
       id: 5,
@@ -54,12 +61,12 @@ function Footer(): JSX.Element {
     {
       id: 1,
       title: 'Ish namunalari',
-      link: '/qadriyatlarimiz'
+      link: '/loyihalar'
     },
     {
       id: 2,
       title: 'Mijozlar fikrlari',
-      link: '/qadriyatlarimiz'
+      link: '/mijozlar-fikrlari'
     }
 
   ]
@@ -69,23 +76,26 @@ function Footer(): JSX.Element {
       id: 1,
       icon: <GrLocation />,
       title: 'O\'zbekiston, Qashqadaryo, Qarshi shahar, Nasaf-ko\'cha, 7-uy.',
+      url: ''
     },
     {
       id: 2,
       icon: <MdMailOutline />,
-      title: 'info@webcraft.uz'
+      title: 'info@webcraft.uz',
+      url: 'https://mail.google.com/mail/u/0/?view=info@webcraft.uz'
     },
     {
       id: 3,
       icon: <SlGlobe />,
       title: 'https://webcraft.uz',
+      url: 'https://webcraft.uz'
     }
   ]
   return (
     <div>
 
 
-      <Box _dark={{ color: 'white', bg: '#0A0E1E' }} _light={{ bg: 'white', color: 'black' }} borderTop={'1px dashed #e4e4e7'} paddingY={'10px'} paddingTop={'2rem'} marginTop={'10rem'} gap={'4rem'} >
+      <Box _dark={{ color: 'white', bg: '#0A0E1E' }} _light={{ bg: '#EEF1F6', color: 'black' }} borderTop={'1px dashed #e4e4e7'} paddingY={'10px'} paddingTop={'2rem'} marginTop={'5rem'} gap={'4rem'} >
         <Box className='wrapper' display={'grid'} gridTemplateColumns={{ lg: 'auto auto auto auto auto', md: 'auto auto auto', sm: 'auto auto',base:'auto'}} alignItems={{md: 'start', base: 'center'}}>
           {/* for logo */}
           <Box display={'flex'} flexDirection={'column'} gap={'1rem'} paddingX={'2rem'}>
@@ -100,10 +110,10 @@ function Footer(): JSX.Element {
               <p className='!text-gray-500'>© 2025-2026 WebCraft</p>
             </Box>
             <Box display={'flex'} gap={'15px'} fontSize={'25px'} cursor={'pointer'}>
-              <Link href={'https://t.me/'}><FaTelegram /></Link>
-              <FaInstagram />
-              <FaFacebook />
-              <FaGithub />
+              <Link href={'https://t.me/M_Javoxir_1'} target='blank'><FaTelegram /></Link>
+              <Link href={'https://www.instagram.com/javoxir_developer?igsh=MnV1azhpaTJ2ejhi'} target='blank'><FaInstagram /></Link>
+              <Link href={'/'}><FaFacebook /></Link>
+              <Link href={'https://github.com/JavoxirJava'} target='blank'><FaGithub /></Link>
             </Box>
           </Box>
 
@@ -124,7 +134,7 @@ function Footer(): JSX.Element {
               <li className='title !font-bold !mb-2 !text-lg' style={{ visibility: 'hidden' }}>Menyu</li>
               {data2 && data2.length > 0 && data2.map((item, i) => {
                 return (
-                  <li key={i}><Box _hover={{ color: 'red', textDecoration: 'underline' }} transition={'all .5s'}><Link href={item.link}>{item.title}</Link></Box></li>
+                  <li key={i}><Box _hover={{ color: 'red', textDecoration: 'underline' }}  transition={'all .5s'}><Link href={item.link}>{item.title}</Link></Box></li>
                 )
               })}
             </ul>
@@ -136,19 +146,19 @@ function Footer(): JSX.Element {
               <li className='title !font-bold !mb-2 !text-lg'>Aloqalar</li>
               {contactData && contactData.length > 0 && contactData.map((item, i) => {
                 return (
-                  <Box display={'flex'} alignItems={'center'}>
+                  <Box cursor={'pointer'} display={'flex'} alignItems={'center'}>
                     {item.icon}
-                    <li key={i} className='!ml-5 !text-md !font-semibold'><Box >{item.title}</Box></li>
+                    <li key={i} className='!ml-5 !text-md !font-semibold'><Link target='blank' href={item.url}>{item.title}</Link></li>
                   </Box>
                 )
               })}
             </ul>
           </Box>
           <Box>
-            <ul className='flex flex-col gap-5 !font-bold !text-slate-400 !mt-15 !ml-5'>
-              <li>(+998) 88 034 09 12</li>
-              <li>(+998) 93 818 81 77</li>
-              <li>(+998) 88 200 27 72</li>
+            <ul className='flex cursor-pointer flex-col gap-5 !font-bold !text-slate-400 !mt-15 !ml-5'>
+              <li><Link href={'tel:+998880340912'} target='blank'>(+998) 88 034 09 12</Link></li>
+              <li><Link href={'tel:+998938188177'}>(+998) 93 818 81 77</Link></li>
+              <li><Link href={'tel:+998882002772'}>(+998) 88 200 27 72</Link></li>
             </ul>
           </Box>
         </Box>

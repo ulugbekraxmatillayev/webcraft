@@ -64,9 +64,9 @@ function FormDialog({children}:FormDialogProps): JSX.Element {
                         </Dialog.Body>
                         <Dialog.Footer>
                             <Dialog.ActionTrigger asChild>
-                                <Button variant="outline">Cancel</Button>
+                                <Button variant="outline">Yopish</Button>
                             </Dialog.ActionTrigger>
-                            <Button>Save</Button>
+                            <Button>Saqlash </Button>
                         </Dialog.Footer>
                     </Dialog.Content>
                 </Dialog.Positioner>
